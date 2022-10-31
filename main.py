@@ -3,32 +3,56 @@ print("Welcome to the split bill calculator!")
 time.sleep(2)
 print()
 while True:
-  myBill = input("What was the bill?: ")
-  print()
-  if myBill.isnumeric() == True:
-    myBill = float(myBill)  
-    break
-  else:
+  try:
+    myBill = float(input("What was the bill?: "))
+    print()
+  except ValueError:
+    print()
+    print("I am expecting positive numbers.")
+    print()
     continue
+  if myBill < 0:
+    print()
+    print("Bill cannot be negative.")
+    print()
+    continue
+  else:
+    break
     
 while True: 
-  tipPerc = input("What percentage of tip will you leave to be added to the bill total? ")
-  print()
-  if tipPerc.isnumeric() == True:
-    tipPerc = float(tipPerc)
-    break
-  else:
+  try:
+    tipPerc = float(input("What percentage of tip will you leave to be added to the bill total? "))
+    print()
+  except ValueError:
+    print()
+    print("I am expecting numbers.")
+    print()
+    continue  
+  if tipPerc < 0:
+    print()
+    print("Tip percentage cannot be negative")
+    print()
     continue
+  else:
+    break
     
 while True:   
   try:
     numberOfPeople = int(input("How many people?: "))
     print()
   except ValueError:
+    print()
     print("We count people using whole numbers or integers.")
     print("Please, enter a valid integer")
+    print()
     continue  
-  else:
+  if numberOfPeople <= 0:
+    print()
+    print("Are you a ghost?")
+    print('There has to be atleast one person to pay the bill.')
+    print()
+    continue  
+  else:  
     break
   
 totalBill = myBill + (myBill *(tipPerc/100))
